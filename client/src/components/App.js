@@ -1,7 +1,9 @@
 import React, {useState} from "react";
 
 function App() {
-  const [answer, setAnswer] = useState(0);
+  const [firstNum, setFirstNum] = useState(0);
+  const [secondNum, setSecondNum] = useState(0);
+  const [operator, setOperator] = useState('');
 
   return (
     <div>
@@ -40,7 +42,34 @@ function App() {
   )
 
   function handleClick(e){
-    console.log(e.target.name)
+    const nums = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
+
+    if (nums.includes(e.target.name)){
+      if (answer === 0){
+        setAnswer(nums.indexOf(e.target.name))
+      } else {
+        const input = nums.indexOf(e.target.name)
+        const new_num = answer.toString() + input.toString()
+        setAnswer(new_num)
+      }
+    } else if (e.target.name === 'clear'){
+      setAnswer(0);
+      setEquation();
+    } else if (e.target.name === 'negative'){
+      setAnswer(answer * -1);
+    } else if (e.target.name === 'percent'){
+      setAnswer(answer * 0.01);
+    } else if (e.target.name === 'decimal'){
+      const ans_num = answer.toString();
+      
+      if (!(ans_num.includes('.'))){
+        setAnswer(ans_num + '.')
+      }
+    } 
+    
+    if (e.target.name === 'add'){
+      setOperator('add')
+    }
   }
 }
 

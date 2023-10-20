@@ -13,6 +13,8 @@
   background-color: grey;
   width: 30%;
   height: 5rem;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
 }
 
 .ans {
