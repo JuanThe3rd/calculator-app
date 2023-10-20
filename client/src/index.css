@@ -9,9 +9,21 @@
 
 }
 
+.ans-container {
+  background-color: grey;
+  width: 30%;
+  height: 5rem;
+}
 
+.ans {
+  font-size: 2rem;
+  text-align: right;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 1.5rem;
+}
 
-.calc-container {
+.input-container {
   display: grid;
   grid-template-columns: auto auto auto auto;
   width: 30%;
@@ -25,8 +37,9 @@
 .special-input {
   width: 198%;
   font-size:larger;
+  border-bottom-left-radius: 10px;
 }
 
-.empty-cell {
-  display: hidden;
+.btm-right {
+  border-bottom-right-radius: 10px;
 }
