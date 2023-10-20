@@ -5,3 +5,28 @@
   --text: hsla(0, 0%, 100%, 0.88);
 }
 
+.title {
+
+}
+
+
+
+.calc-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  width: 30%;
+  height: 20rem;
+}
+
+.input {
+  font-size:larger;
+}
+
+.special-input {
+  width: 198%;
+  font-size:larger;
+}
+
+.empty-cell {
+  display: hidden;
+}
