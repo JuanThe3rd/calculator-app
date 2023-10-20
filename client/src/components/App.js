@@ -3,12 +3,15 @@ import React, {useState} from "react";
 function App() {
   const [ans, setAns] = useState(0);
   const [firstNum, setFirstNum] = useState(0);
+  const [secondNum, setSecondNum] = useState(0);
   const [operator, setOperator] = useState('');
+  const [equation, setEquation] = useState('');
 
   return (
     <div>
       <h1 className='title' >Calculator</h1>
         <div className='ans-container'>
+          <div className='equation'>{equation}</div>
           <div className='ans'>{ans}</div>
         </div>
 
@@ -36,10 +39,26 @@ function App() {
           <button name='zero' onClick={handleClick} className='special-input'>0</button>
           <div name='zero' onClick={handleClick} className='empty-cell'></div>
           <button name='decimal' onClick={handleClick} className='input'>.</button>
-          <button name='equals' onClick={handleClick} className='input btm-right'>=</button>
+          <button name='equals' onClick={handleSubmit} className='input btm-right'>=</button>
         </div>
     </div>
   )
+
+  function handleSubmit(e){
+    if (operator === 'add'){
+      setEquation(`${firstNum} + ${ans}`)
+      setAns(firstNum + ans)
+    } else if (operator === 'subtract'){
+      setEquation(`${firstNum} - ${ans}`)
+      setAns(firstNum - ans)
+    } else if (operator === 'multiply'){
+      setEquation(`${firstNum} * ${ans}`)
+      setAns(firstNum * ans)
+    } else if (operator === 'divide'){
+      setEquation(`${firstNum} ÷ ${ans}`)
+      setAns(firstNum / ans)
+    }
+  }
 
   function handleClick(e){
     const nums = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
@@ -56,6 +75,7 @@ function App() {
       setFirstNum(0);
       setAns(0);
       setOperator('');
+      setEquation('');
     } else if (e.target.name === 'negative'){
       setAns(ans * -1);
     } else if (e.target.name === 'percent'){
@@ -65,17 +85,17 @@ function App() {
       if (!(ans_num.includes('.'))){
         setAns(ans_num + '.')
       }
-    } else if (e.target.name === 'equals'){
-      if (operator === 'add'){
-        setAns(ans + firstNum);
-      } else if (operator === 'subtract'){
-        setAns(firstNum - ans);
-      } else if (operator === 'multiply'){
-        setAns(firstNum * ans);
-      } else if (operator === 'divide'){
-        setAns(firstNum / ans);
-      }
     } else {
+      if(e.target.name === 'add'){
+        setEquation(`${ans} +`);
+      } else if (e.target.name === 'subtract'){
+        setEquation(`${ans} -`);
+      } else if (e.target.name === 'multiply'){
+        setEquation(`${ans} *`);
+      } else if (e.target.name === 'divide'){
+        setEquation(`${ans} ÷`)
+      }
+
       setOperator(e.target.name);
       setFirstNum(ans);
       setAns(0);
