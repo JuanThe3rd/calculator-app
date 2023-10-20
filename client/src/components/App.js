@@ -1,15 +1,15 @@
 import React, {useState} from "react";
 
 function App() {
+  const [ans, setAns] = useState(0);
   const [firstNum, setFirstNum] = useState(0);
-  const [secondNum, setSecondNum] = useState(0);
   const [operator, setOperator] = useState('');
 
   return (
     <div>
       <h1 className='title' >Calculator</h1>
         <div className='ans-container'>
-          <div className='ans'>{answer}</div>
+          <div className='ans'>{ans}</div>
         </div>
 
         <div className='input-container'>
@@ -45,30 +45,40 @@ function App() {
     const nums = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
 
     if (nums.includes(e.target.name)){
-      if (answer === 0){
-        setAnswer(nums.indexOf(e.target.name))
+      if (ans === 0){
+        setAns(nums.indexOf(e.target.name))
       } else {
         const input = nums.indexOf(e.target.name)
-        const new_num = answer.toString() + input.toString()
-        setAnswer(new_num)
+        const new_num = ans.toString() + input.toString()
+        setAns(parseFloat(new_num))
       }
     } else if (e.target.name === 'clear'){
-      setAnswer(0);
-      setEquation();
+      setFirstNum(0);
+      setAns(0);
+      setOperator('');
     } else if (e.target.name === 'negative'){
-      setAnswer(answer * -1);
+      setAns(ans * -1);
     } else if (e.target.name === 'percent'){
-      setAnswer(answer * 0.01);
+      setAns(ans * 0.01);
     } else if (e.target.name === 'decimal'){
-      const ans_num = answer.toString();
-      
+      const ans_num = ans.toString();
       if (!(ans_num.includes('.'))){
-        setAnswer(ans_num + '.')
+        setAns(ans_num + '.')
       }
-    } 
-    
-    if (e.target.name === 'add'){
-      setOperator('add')
+    } else if (e.target.name === 'equals'){
+      if (operator === 'add'){
+        setAns(ans + firstNum);
+      } else if (operator === 'subtract'){
+        setAns(firstNum - ans);
+      } else if (operator === 'multiply'){
+        setAns(firstNum * ans);
+      } else if (operator === 'divide'){
+        setAns(firstNum / ans);
+      }
+    } else {
+      setOperator(e.target.name);
+      setFirstNum(ans);
+      setAns(0);
     }
   }
 }
