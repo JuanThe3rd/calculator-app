@@ -3,7 +3,7 @@ import React, {useState} from "react";
 function App() {
   const [ans, setAns] = useState(0);
   const [firstNum, setFirstNum] = useState(0);
-  const [secondNum, setSecondNum] = useState(0);
+  const [secondNum, setSecondNum] = useState();
   const [operator, setOperator] = useState('');
   const [equation, setEquation] = useState('');
 
@@ -45,23 +45,49 @@ function App() {
   )
 
   function handleSubmit(e){
-    if (operator === 'add'){
-      setEquation(`${firstNum} + ${ans}`)
-      setAns(firstNum + ans)
-    } else if (operator === 'subtract'){
-      setEquation(`${firstNum} - ${ans}`)
-      setAns(firstNum - ans)
-    } else if (operator === 'multiply'){
-      setEquation(`${firstNum} * ${ans}`)
-      setAns(firstNum * ans)
-    } else if (operator === 'divide'){
-      setEquation(`${firstNum} ÷ ${ans}`)
-      setAns(firstNum / ans)
+    if (secondNum === null){
+      setSecondNum(() => ans)
+
+      if (operator === 'add'){
+        setEquation(`${firstNum} + ${ans}`)
+        setAns(firstNum + ans)
+      } else if (operator === 'subtract'){
+        setEquation(`${firstNum} - ${ans}`)
+        setAns(firstNum - ans)
+      } else if (operator === 'multiply'){
+        setEquation(`${firstNum} * ${ans}`)
+        setAns(firstNum * ans)
+      } else if (operator === 'divide'){
+        setEquation(`${firstNum} ÷ ${ans}`)
+        setAns(firstNum / ans)
+      }
+
+      setFirstNum(() => ans)
+    } else {
+      if (operator === 'add'){
+        setEquation(`${ans} + ${secondNum}`)
+        setAns(ans + secondNum)
+      } else if (operator === 'subtract'){
+        setEquation(`${ans} - ${secondNum}`)
+        setAns(ans - secondNum)
+      } else if (operator === 'multiply'){
+        setEquation(`${ans} * ${secondNum}`)
+        setAns(ans * secondNum)
+      } else if (operator === 'divide'){
+        setEquation(`${ans} ÷ ${secondNum}`)
+        setAns(ans / secondNum)
+      }
+
+      setFirstNum(ans)
     }
+
+    console.log({firstNum, secondNum, ans})
   }
 
   function handleClick(e){
     const nums = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
+
+    setSecondNum(null);
 
     if (nums.includes(e.target.name)){
       if (ans === 0){
