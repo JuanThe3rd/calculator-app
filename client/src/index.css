@@ -3,10 +3,13 @@
   --header: #fff;
   --link: #61dafb;
   --text: hsla(0, 0%, 100%, 0.88);
+  background-image: linear-gradient(to right, rgb(206, 13, 240) , rgb(103, 36, 211));
+  background-size: cover;
 }
 
 .title {
-
+  text-align: center;
+  color: white;
 }
 
 .ans-container {
@@ -15,6 +18,8 @@
   height: 5rem;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
+  margin-left: 25%;
+  border: 1px solid black;
 }
 
 .equation {
@@ -37,16 +42,27 @@
   grid-template-columns: auto auto auto auto;
   width: 50%;
   height: 20rem;
+  margin-left: 25%;
 }
 
 .input {
   font-size:larger;
+  border: 1px solid black;
+}
+
+.input:hover{
+  background-color: yellow;
 }
 
 .special-input {
   width: 198%;
   font-size:larger;
   border-bottom-left-radius: 10px;
+  border: 1px solid black;
+}
+
+.special-input:hover {
+  background-color: yellow;
 }
 
 .btm-right {
