@@ -80,8 +80,6 @@ function App() {
 
       setFirstNum(ans)
     }
-
-    console.log({firstNum, secondNum, ans})
   }
 
   function handleClick(e){
@@ -94,8 +92,14 @@ function App() {
         setAns(nums.indexOf(e.target.name))
       } else {
         const input = nums.indexOf(e.target.name)
-        const new_num = ans.toString() + input.toString()
-        setAns(parseFloat(new_num))
+
+        if (input !== 0){
+          const new_num = ans.toString() + input.toString()
+          setAns(parseFloat(new_num))
+        } else {
+          const new_num = ans.toString() + input.toString()
+          setAns(new_num)
+        }
       }
     } else if (e.target.name === 'clear'){
       setFirstNum(0);
@@ -103,9 +107,11 @@ function App() {
       setOperator('');
       setEquation('');
     } else if (e.target.name === 'negative'){
-      setAns(ans * -1);
+      const ans_num = parseFloat(ans);
+      setAns(ans_num * -1);
     } else if (e.target.name === 'percent'){
-      setAns(ans * 0.01);
+      const ans_num = parseFloat(ans);
+      setAns(ans_num * 0.01);
     } else if (e.target.name === 'decimal'){
       const ans_num = ans.toString();
       if (!(ans_num.includes('.'))){
@@ -122,8 +128,10 @@ function App() {
         setEquation(`${ans} ÷`)
       }
 
+      const ans_num = parseFloat(ans)
+
       setOperator(e.target.name);
-      setFirstNum(ans);
+      setFirstNum(ans_num);
       setAns(0);
     }
   }
