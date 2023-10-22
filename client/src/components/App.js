@@ -37,7 +37,6 @@ function App() {
           <button name='add' onClick={handleClick} className='input'>+</button>
 
           <button name='zero' onClick={handleClick} className='special-input'>0</button>
-          <div name='zero' onClick={handleClick} className='empty-cell'></div>
           <button name='decimal' onClick={handleClick} className='input'>.</button>
           <button name='equals' onClick={handleSubmit} className='input btm-right'>=</button>
         </div>
